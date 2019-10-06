@@ -1,7 +1,7 @@
 import math
 
 
-def infToPost(expressionInInfix):  # Функиция преобразования инфикса в постфикс
+def infToPost(expressionInInfix):  # Функция преобразования инфикса в постфикс
     return expressionInInfix  # Пока считаем, что пользователь ввел уже постфиксную форму
 
 
