@@ -1,7 +1,7 @@
 import simpleExpressions
 import fractionExpressions
-
-
+from math import cos
+from fractions import Fraction
 def mainLoop():
     print('1 - expression in Postfix')
     print('2 - fraction expression')
