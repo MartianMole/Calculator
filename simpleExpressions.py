@@ -2,7 +2,29 @@ import math
 
 
 def infToPost(expressionInInfix):  # Функция преобразования инфикса в постфикс
-    return expressionInInfix  # Пока считаем, что пользователь ввел уже постфиксную форму
+    prec = {"*": 3, "/": 3, "+": 2, "-": 2, "(": 1}
+    postfixList = []
+    tokenList = expressionInInfix
+    opStack = []
+    for token in tokenList:
+        if token in "0123456789":
+            postfixList.append(token)
+        elif token == '(':
+            opStack.append(token)
+        elif token == ')':
+            topToken = opStack.pop()
+            while topToken != '(':
+                postfixList.append(topToken)
+                topToken = opStack.pop()
+        else:
+            while (not opStack == []) and \
+                    (prec[opStack[-1]] >= prec[token]):
+                postfixList.append(opStack.pop())
+            opStack.append(token)
+
+    while not opStack == []:
+        postfixList.append(opStack.pop())
+    return postfixList
 
 
 class Calculate:
@@ -14,7 +36,7 @@ class Calculate:
         return 'Error'
 
     def calculate(self):  # Считает выражение в постфиксной форме
-        expressionInPostfix = infToPost(self.expressionInInfix)
+        expressionInPostfix = infToPost(self.expressionInInfix)  # Преобразовываем инфикс в постфикс
         stack = []
         for i in expressionInPostfix:
             if i == '+':
@@ -71,4 +93,4 @@ class Calculate:
             else:
                 return float('{:.5f}'.format(stack[0]))
         else:
-            return 'Error'
+            Calculate.Error()
