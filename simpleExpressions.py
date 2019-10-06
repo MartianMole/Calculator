@@ -2,12 +2,13 @@ import math
 
 
 def infToPost(expressionInInfix):  # Функция преобразования инфикса в постфикс
-    prec = {"*": 3, "/": 3, "+": 2, "-": 2, "(": 1}
+    prec = {"sin": 3, "sqrt": 3, "cos": 3, "abs": 3, "*": 3, "/": 3, "+": 2, "-": 2, "(": 1}
     postfixList = []
+    print(expressionInInfix)
     tokenList = expressionInInfix
     opStack = []
     for token in tokenList:
-        if token in "0123456789":
+        if token[0] in "0123456789":
             postfixList.append(token)
         elif token == '(':
             opStack.append(token)
